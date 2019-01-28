@@ -1,0 +1,48 @@
+<html>
+<body>
+<header>
+  <p> Welcome To Comedians! </p>
+</header>
+
+<div class='stats'>
+  <h3> Statistics </h3>
+    <ul>
+      <div class="columns">
+        <div class="average_age">
+          <li> <p>Average Age Of These Comedians Is</p></li>
+          <li> <%= @comedians.average_age %></li>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="runtime">
+          <li> <p>Average Run Length Of Every TV Special On This Page</p></li>
+          <li><%= @specials.average_runtime %></li>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="cities">
+          <li> <p>List Of Cities Where These Comedians Were Born</p></li>
+          <li><%= @comedians.all_cities%></li>
+        </div>
+      </div>
+    </ul>
+</div>
+
+  <div class='comedians'>
+    <div class='comedian'>
+      <% @comedians.each do |comedian| %>
+               <h2><%= comedian.name %>, <%= comedian.age %>, <%= comedian.birthplace %></br><img class="comedian-photo" src= <%= comedian.image_url %> />
+                <% @specials.each do |special| %>
+                <% if special.comedian_id == comedian.id %>
+                <p>Title:
+                <%= special.name %>, Runtime (mins):
+                <%= special.runtime_mins %></p>
+                  <img class="special-photo" src= <%= special.image_url %> />
+
+              <% end %>
+            <% end %>
+          <% end %></h2>
+      </div>
+</div>
+</body>
+</html>
